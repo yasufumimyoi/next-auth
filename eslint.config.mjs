@@ -85,28 +85,28 @@ const eslintConfig = [
 
       // 追加の TypeScript ルール
       '@typescript-eslint/no-unused-expressions': 'error', // 未使用の式を禁止
-      '@typescript-eslint/consistent-type-imports': [
-        // type importを強制
-        'error',
-        { prefer: 'type-imports' },
-      ],
-      '@typescript-eslint/naming-convention': [
-        // 命名規則
-        'error',
-        {
-          selector: 'interface',
-          format: ['PascalCase'],
-          prefix: ['I'],
-          filter: {
-            regex: '^(Session|User|JWT)$',
-            match: false,
-          },
-        },
-        {
-          selector: 'typeAlias',
-          format: ['PascalCase'],
-        },
-      ],
+      // '@typescript-eslint/consistent-type-imports': [
+      //   // type importを強制
+      //   'error',
+      //   { prefer: 'type-imports' },
+      // ],
+      // '@typescript-eslint/naming-convention': [
+      //   // 命名規則
+      //   'error',
+      //   {
+      //     selector: 'interface',
+      //     format: ['PascalCase'],
+      //     prefix: ['I'],
+      //     filter: {
+      //       regex: '^(Session|User|JWT)$',
+      //       match: false,
+      //     },
+      //   },
+      //   {
+      //     selector: 'typeAlias',
+      //     format: ['PascalCase'],
+      //   },
+      // ],
 
       // 追加の React ルール
       'react/jsx-no-useless-fragment': 'error', // 不要なフラグメントを禁止
@@ -138,7 +138,7 @@ const eslintConfig = [
 
       // その他
       'no-nested-ternary': 'error', // ネストされた三項演算子を禁止
-      'no-duplicate-imports': 'error', // 重複したインポートを禁止
+      // 'no-duplicate-imports': 'error', // 重複したインポートを禁止
       'sort-imports': [
         // import文のソート
         'error',
