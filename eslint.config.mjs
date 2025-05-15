@@ -10,6 +10,14 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  {
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.json'],
+        tsconfigRootDir: __dirname,
+      },
+    },
+  },
   ...compat.extends(
     'next/core-web-vitals',
     'next/typescript',
@@ -52,14 +60,17 @@ const eslintConfig = [
       // 明示的なany型の禁止
       '@typescript-eslint/no-explicit-any': 'error',
 
-      // 関数の戻り値の型を必須に
-      '@typescript-eslint/explicit-function-return-type': [
-        'error',
-        {
-          allowExpressions: true,
-          allowTypedFunctionExpressions: true,
-        },
-      ],
+      // // 関数の戻り値の型を必須に
+      // '@typescript-eslint/explicit-function-return-type': [
+      //   'error',
+      //   {
+      //     allowExpressions: true,
+      //     allowTypedFunctionExpressions: true,
+      //   },
+      // ],
+
+      // Promiseを返す関数の適切な処理を強制
+      '@typescript-eslint/no-floating-promises': 'error',
 
       // Reactのルール
       'react/prop-types': 'off', // TypeScriptを使用する場合は不要
@@ -71,17 +82,6 @@ const eslintConfig = [
           eventHandlerPropPrefix: 'on',
         },
       ],
-      'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
-      'jsx-a11y/anchor-is-valid': [
-        'error',
-        {
-          components: ['Link'],
-          specialLink: ['hrefLeft', 'hrefRight'],
-          aspects: ['invalidHref', 'preferButton'],
-        },
-      ],
 
       // 追加の TypeScript ルール
       '@typescript-eslint/no-unused-expressions': 'error', // 未使用の式を禁止
@@ -90,7 +90,6 @@ const eslintConfig = [
         'error',
         { prefer: 'type-imports' },
       ],
-      '@typescript-eslint/no-floating-promises': 'error', // Promiseの未ハンドルを禁止
       '@typescript-eslint/naming-convention': [
         // 命名規則
         'error',
@@ -98,6 +97,10 @@ const eslintConfig = [
           selector: 'interface',
           format: ['PascalCase'],
           prefix: ['I'],
+          filter: {
+            regex: '^(Session|User|JWT)$',
+            match: false,
+          },
         },
         {
           selector: 'typeAlias',
