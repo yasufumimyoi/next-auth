@@ -1,6 +1,6 @@
 'use client';
 
-import { useSession, signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 
 export default function Header() {
   const { data: session } = useSession();
@@ -14,24 +14,20 @@ export default function Header() {
           <div className="flex items-center gap-4">
             {session ? (
               <>
-                <span className="text-sm text-gray-700">
-                  {session.user?.email}
-                </span>
+                <span className="text-sm text-gray-700">{session.user?.email}</span>
                 <button
-                  onClick={() => signOut({ callbackUrl: '/auth/signin' })}
+                  onClick={() => signOut({ callbackUrl: '/' })}
                   className="text-sm bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors"
                 >
                   ログアウト
                 </button>
               </>
             ) : (
-              <div className="text-sm text-gray-500">
-                ログインしていません
-              </div>
+              <div className="text-sm text-gray-500">ログインしていません</div>
             )}
           </div>
         </div>
       </div>
     </header>
   );
-} 
+}

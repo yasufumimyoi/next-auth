@@ -1,9 +1,9 @@
-import NextAuth, { type NextAuthOptions , User } from 'next-auth';
+import NextAuth, { type NextAuthOptions, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 import { AuthService } from '@/services/auth';
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -129,5 +129,4 @@ const authOptions: NextAuthOptions = {
 const handler = NextAuth(authOptions);
 
 // App Router用のハンドラー
-export const GET = handler;
-export const POST = handler;
+export { handler as GET, handler as POST };
